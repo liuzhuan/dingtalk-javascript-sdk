@@ -1,17 +1,20 @@
 /**
+ * 自定义事件发射器类
  * Created by xiangwenwen on 2017/3/24.
  */
 
 let cat = {};
+
 let EventEmitter = {
-  on: function(event,fun){
+  on: function(event, fun){
     let cbs = cat[event];
     cbs ? cbs.push(fun) : cat[event] = [];
     if (!cbs) {
       cat[event].push(fun);
     }
   },
-  off: function(event,fun){
+
+  off: function(event, fun){
     let cbs = cat[event];
     if (!cbs) {
       return false;
@@ -35,27 +38,29 @@ let EventEmitter = {
     }
     return true;
   },
-  once: function(event,fun){
+
+  once: function(event, fun){
     function _on(){
-      EventEmitter.off(event,_on);
-      fun.apply(this,arguments);
+      EventEmitter.off(event, _on);
+      fun.apply(this, arguments);
     }
     _on.fun = fun;
-    EventEmitter.on(event,_on);
+    EventEmitter.on(event, _on);
   },
+
   emit: function(event){
     let isString = typeof event === 'string';
     if (!isString){
       return;
     }
     let cbs = cat[event];
-    let args = toArray(arguments,1);
+    let args = toArray(arguments, 1);
     if (cbs) {
       let i = 0;
       let j = cbs.length;
       for(;i<j;i++){
         let cb = cbs[i];
-        cb.apply(this,args);
+        cb.apply(this, args);
       }
     }
   }

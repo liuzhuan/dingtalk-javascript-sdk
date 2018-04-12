@@ -12,22 +12,27 @@ npm install dingtalk-javascript-sdk --save
 
 ## 使用
 
-入口weex-entry.js:
+入口 `weex-entry.js`:
 
 ```JavaScript
+/**
+* rax http://rax.taobaofed.org/
+* 一个通用的兼容 React 的渲染引擎
+*/
 import { createElement, render } from 'rax';
 import App from './app.js';
 render(<App/>);
 ```
 
-业务app.js：
+业务 `app.js`：
 
 ```JavaScript
 import { createElement, Component, render} from 'rax';
 import View from 'rax-view';
 import Text from 'rax-text';
 import dingtalk from 'dingtalk-javascript-sdk';
-export default class App extends Component{
+
+export default class App extends Component {
   render(){
     return(
       <View>
@@ -65,7 +70,7 @@ dingtalk.ready(function(){
 })
 ```
 
-* 如果你有签名的需要，可以调用dingtalk.config，将你的签名对象传入，整个应用的周期内，你应该只可以调用一次config方法
+* 如果你有签名的需要，可以调用 `dingtalk.config`，将你的签名对象传入，整个应用的周期内，你应该只可以调用一次 `config` 方法
 
 例子：
 
@@ -87,7 +92,7 @@ dingtalk.error(function(err){
 });
 ```
 
-* 正常的js-api可以通过dingtalk.apis来获取
+* 正常的 `js-api` 可以通过 `dingtalk.apis` 来获取
 
 例子：
 

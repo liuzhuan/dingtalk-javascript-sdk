@@ -5,11 +5,12 @@
 import exec from 'dingtalk-sdk-exec';
 import EventEmitter from './global-api/EventEmitter.js';
 import parseJsApis from './core/parseJsApis.js';
-import { env,requireModule,log, LogType } from 'dingtalk-javascript-utility';
+import { env, requireModule,log, LogType } from 'dingtalk-javascript-utility';
 
 let globalEvent = {};
 const { isWeex } = env;
-if (isWeex){
+
+if (isWeex) {
   globalEvent = requireModule('globalEvent');
 }
 
